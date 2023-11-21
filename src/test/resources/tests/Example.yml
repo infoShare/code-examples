@@ -1,0 +1,9 @@
+scenarioName: Example test
+steps:
+  - name: example_step
+    url: infoshare.TestUtil
+    operation: sum
+    request:
+      a: 1
+      b: 2
+    verify: 3
