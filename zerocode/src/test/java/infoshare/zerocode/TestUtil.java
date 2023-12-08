@@ -1,4 +1,4 @@
-package infoshare;
+package infoshare.zerocode;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

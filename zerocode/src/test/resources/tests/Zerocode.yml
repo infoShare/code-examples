@@ -1,0 +1,9 @@
+scenarioName: Zerocode test
+steps:
+  - name: zerocode_step
+    url: infoshare.zerocode.TestUtil
+    operation: sum
+    request:
+      a: 1
+      b: 2
+    verify: 3
