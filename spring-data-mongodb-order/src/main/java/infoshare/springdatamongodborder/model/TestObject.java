@@ -1,13 +1,9 @@
 package infoshare.springdatamongodborder.model;
 
-import lombok.Builder;
-import lombok.Data;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Data
-@Builder
 @Document(collection = "collection")
 public class TestObject {
     @Id
@@ -15,4 +11,10 @@ public class TestObject {
     private String name;
     private NestedObject nested;
     private boolean active;
+
+    public TestObject(String name, NestedObject nested, boolean active) {
+        this.name = name;
+        this.nested = nested;
+        this.active = active;
+    }
 }

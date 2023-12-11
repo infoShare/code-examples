@@ -24,8 +24,8 @@ class SpringDataMongodbOrderTests {
     @Test
     void testIncorrectFieldsOrderQuery() {
         //given
-        NestedObject nested = NestedObject.builder().systemName("A").checkName("B").checkVersion("1").build();
-        TestObject testObject = mongoTemplate.insert(TestObject.builder().name("TEST").nested(nested).active(true).build());
+        NestedObject nested = new NestedObject("A", "B", "1", null);
+        TestObject testObject = mongoTemplate.insert(new TestObject("TEST", nested, true));
         LinkedHashMap<Object, String> nestedProps = new LinkedHashMap<>();
         nestedProps.put("systemName", "A");
         nestedProps.put("checkName", "B");
@@ -43,7 +43,7 @@ class SpringDataMongodbOrderTests {
         MongoTemplate.doFind() on line: Document mappedQuery = queryContext.getMappedQuery(entity);
         */
         assertEquals(1, testObjects.size());
-        assertEquals(testObject, testObjects.getFirst());
+        assertEquals(testObject, testObjects.get(0));
     }
 
 }
