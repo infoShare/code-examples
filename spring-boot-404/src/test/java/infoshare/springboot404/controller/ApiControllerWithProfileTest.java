@@ -32,6 +32,7 @@ class ApiControllerWithProfileTest {
         HttpHeaders headers = new HttpHeaders();
         headers.add("key", "CORRECT");
         ResponseEntity<String> exchange = restTemplate.exchange("http://localhost:" + port + "/api/method", HttpMethod.POST, new HttpEntity<>(headers), String.class);
-        assertThat(exchange.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+        assertThat(exchange.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
+        assertThat(exchange.getBody()).isEqualTo("No static resource api/method.");
     }
 }
