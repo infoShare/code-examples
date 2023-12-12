@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+
+  service:
+    image: service:latest
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      spring.profiles.active: profile
