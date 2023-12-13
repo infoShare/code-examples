@@ -15,7 +15,12 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfiguration {
     private static final String API_RESOURCE = "/api/**";
-
+    private static final String[] SWAGGER_RESOURCES = {
+            "/swagger-ui.html",
+            "/v3/api-docs/**",
+            "/swagger-ui/**",
+            "/favicon.ico"
+    };
     @Bean
     @Order(1)
     public SecurityFilterChain apiFilterChain(HttpSecurity httpSecurity, APIKeyAuthFilter apiKeyAuthFilter) throws Exception {
@@ -30,6 +35,17 @@ public class SecurityConfiguration {
                 .anonymous(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
+                .build();
+    }
+
+    @Bean
+    @Order(2)
+    public SecurityFilterChain swaggerFilterChain(HttpSecurity httpSecurity) throws Exception {
+        return httpSecurity
+                .securityMatcher(SWAGGER_RESOURCES)
+                .authorizeHttpRequests(auth -> auth
+                        .anyRequest()
+                        .permitAll())
                 .build();
     }
 }

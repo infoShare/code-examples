@@ -1,5 +1,6 @@
 package infoshare.springboot404.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpEntity;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.testcontainers.containers.DockerComposeContainer;
+import org.testcontainers.containers.output.Slf4jLogConsumer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
@@ -15,6 +17,7 @@ import java.io.File;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Slf4j
 @Testcontainers
 public class ApiControllerWithDockerTest {
 
@@ -22,7 +25,9 @@ public class ApiControllerWithDockerTest {
     public static DockerComposeContainer<?> serviceContainer =
             new DockerComposeContainer<>(new File("docker/docker-compose.yml"))
                     .withExposedService("service", 8080)
-                    .withLocalCompose(true);
+                    .withLogConsumer("service", new Slf4jLogConsumer(log).withSeparateOutputStreams())
+                    .withLocalCompose(true)
+                    .withEnv("spring.profiles.active", "profile");
 
     private TestRestTemplate restTemplate = new TestRestTemplate();
 
