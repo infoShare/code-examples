@@ -26,8 +26,7 @@ public class ApiControllerWithDockerTest {
             new DockerComposeContainer<>(new File("docker/docker-compose.yml"))
                     .withExposedService("service", 8080)
                     .withLogConsumer("service", new Slf4jLogConsumer(log).withSeparateOutputStreams())
-                    .withLocalCompose(true)
-                    .withEnv("spring.profiles.active", "profile");
+                    .withLocalCompose(true);
 
     private TestRestTemplate restTemplate = new TestRestTemplate();
 
