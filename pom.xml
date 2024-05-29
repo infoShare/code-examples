@@ -18,6 +18,7 @@
         <module>zerocode</module>
         <module>spring-data-mongodb-order</module>
         <module>spring-boot-404</module>
+        <module>spring-data-mongodb-ssl</module>
     </modules>
 
     <build>

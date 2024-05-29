@@ -1,0 +1,6 @@
+## Swagger configuration
+springdoc:
+  packagesToScan: infoshare.mongodbindexes
+  pathsToMatch: /api/**
+  swagger-ui:
+    disable-swagger-default-url: true
