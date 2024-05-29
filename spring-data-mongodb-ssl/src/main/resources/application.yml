@@ -1,0 +1,7 @@
+server:
+  shutdown: graceful
+
+spring:
+    data:
+      mongodb:
+        uri: mongodb://root:pass@localhost:27017/db?socketTimeoutMs=300000

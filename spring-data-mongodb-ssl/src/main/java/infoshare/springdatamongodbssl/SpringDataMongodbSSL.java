@@ -11,7 +11,6 @@ import java.util.TimerTask;
 @SpringBootApplication
 public class SpringDataMongodbSSL {
 
-
     public static void main(String[] args) {
         SpringApplication.run(SpringDataMongodbSSL.class, args);
     }
@@ -27,7 +26,6 @@ public class SpringDataMongodbSSL {
                 SpringApplication.exit(event.getApplicationContext(), () -> 0);
                 System.out.println("Context closed");
             }
-        }, 10 * 1000);
+        }, 15 * 1000);
     }
-
 }
